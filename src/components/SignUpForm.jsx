@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { signUpUser } from '../store/slice/authSlice';
+// import { signUpUser } from '../store/slice/authSlice';
 import { useDispatch } from 'react-redux';
 import dowloard from '../image/dowloard.jpg'
 import CustomInput from './CustomInput';
@@ -15,15 +15,15 @@ const SignUpForm = ({ onClick, isSignUp }) => {
 
   const onSubmit = (data) => {
     console.log('Data before submission:', data);
-    dispatch(signUpUser({
-      email: data.email,
-      password: data.password,
-      firstName: data.firstName,
-      lastName: data.lastName,
-      country: data.country,
-      gender: data.gender,
-      picture: data.picture[0], // File input for profile picture
-    }));
+    // dispatch(signUpUser({
+    //   email: data.email,
+    //   password: data.password,
+    //   firstName: data.firstName,
+    //   lastName: data.lastName,
+    //   country: data.country,
+    //   gender: data.gender,
+    //   picture: data.picture[0], // File input for profile picture
+    // }));
   };
 
   return (

@@ -1,5 +1,6 @@
 // src/features/authSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 // Async function for sign-up
 export const signUpUser = createAsyncThunk('auth/signUpUser', async (userData, thunkAPI) => {
@@ -18,20 +19,19 @@ export const signUpUser = createAsyncThunk('auth/signUpUser', async (userData, t
 });
 
 // Async function for sign-in
-export const signInUser = createAsyncThunk('auth/signInUser', async (loginData, thunkAPI) => {
-  const { email, password } = loginData;
-
-  // Simulate API request (Replace with real API call)
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (email === 'test@example.com' && password === 'password123') {
-        resolve({ email, firstName: 'John', lastName: 'Doe' });
-      } else {
-        reject('Invalid email or password');
-      }
-    }, 1000);
-  });
-});
+export const signInUser = createAsyncThunk(
+  'auth/signInUser',
+  async (userCredentials, thunkAPI) => {
+    try {
+      // Replace with your API endpoint
+      const response = await axios.post('http://localhost:3001/api/auth/login', userCredentials);
+      return response.data; // Assuming the API returns user data
+      
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 
 const authSlice = createSlice({
   name: 'auth',
